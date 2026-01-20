@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    //Rode a migração de Room antes de rodar a migração de Messages
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('room_id');
-            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreignId('user_id')->constrained();//cria a foreign key referenciando a tabela users automaticamente
+            $table->foreignId('room_id')->constrained();//a coluna room_id referencia a tabela rooms na coluna id automaticamente
             $table->longText('content');
             $table->timestamps();
         });

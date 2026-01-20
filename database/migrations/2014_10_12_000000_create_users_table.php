@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('language');
+            $table->string('avatar');
             $table->string('channel', 50)->unique();
             $table->timestamp('last_seen')->nullable();
             $table->rememberToken();

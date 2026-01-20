@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('creator_user_id');
-            $table->foreign('creator_user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('participant_user_id');
-            $table->foreign('participant_user_id')->references('id')->on('users');
+            $table->foreignId('creator_user_id')->constrained('users', 'id');//a coluna creator_user_id referencia a tabela users na coluna id automaticamente
+            $table->foreignId('participant_user_id')->constrained('users', 'id');//a coluna participant_user_id referencia a tabela users na coluna id automaticamente
             $table->timestamps();
         });
     }

@@ -12,8 +12,44 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
+
+                            <label for="language" class="col-md-4 col-form-label text-md-end">{{ __('Language') }}</label>
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <label for="brazil" class="form-check-label">
+                                    <img src="{{url('assets/images/brazil-flag.png')}}" alt="brazil" width="18" height="18">
+                                    </label>
+                                    <input type="radio" name="language" id="brazil" class="form-check-input" value="pt" checked>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <label for="usa" class="form-check-label">
+                                        <img src="{{url('assets/images/usa-flag.png')}}" alt="usa" width="18" height="18">
+                                    </label>
+                                    <input type="radio" name="language" id="usa" class="form-check-input" value="en">
+                                </div>
+                            </div>
+                        </div>   
+                        
+                        <div class="row mb-3">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
+                            <div class="col-md-6">
+                                @foreach(avatar() as $avatar)
+                                    <div class="form-check form-check-inline">
+                                        <label for="{{$avatar}}" class="form-check-label">
+                                            <img src="{{$avatar}}" width="18" height="18"  alt="avatar" >
+                                        </label>
+                                        <input type="radio" name="avatar" value="{{$avatar}}" class="form-check-input">
+                                    </div>
+                                @endforeach                                    
+                            </div>
+                        </div>
+                    
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -38,6 +74,8 @@
                                 @enderror
                             </div>
                         </div>
+
+
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
