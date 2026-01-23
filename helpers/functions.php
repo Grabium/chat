@@ -13,3 +13,8 @@ function avatar():array
         'https://bootdey.com/img/Content/avatar/avatar8.png',
     ];
 }
+
+function dateFormat(string $date): string
+{
+    return \Carbon\Carbon::parse($date)->setTimezone('America/Sao_Paulo')->format('d/m/Y \à\s H:i:s');
+}

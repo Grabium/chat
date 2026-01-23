@@ -19,118 +19,30 @@
                     <div class="row">
                         <div class="col-md-9 ">
                             <div class="chat-discussion">
-
-                                <div class="chat-message left">
-                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                    <div class="message">
-                                        <a class="message-author" href="#"> Michael Smith </a>
-                                        <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                        <span class="message-content">
-    										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                            </span>
+                                @foreach($messages as $message)
+                                    <div class="chat-message {{auth()->user()->id === $message->user_id ? 'right' : 'left'}}">
+                                        <img class="message-avatar" src="{{$message->user_avatar}}" alt="">
+                                        <div class="message">
+                                            <a class="message-author" href="#">{{ $message->user_name }}</a>
+                                            <span class="message-date">  {{ dateFormat($message->created_at) }} </span>
+                                            <span class="message-content">{{ $message->content }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="chat-message right">
-                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                    <div class="message">
-                                        <a class="message-author" href="#"> Karl Jordan </a>
-                                        <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                        <span class="message-content">
-											Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover.
-                                            </span>
-                                    </div>
-                                </div>
-                                <div class="chat-message right">
-                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                    <div class="message">
-                                        <a class="message-author" href="#"> Michael Smith </a>
-                                        <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                        <span class="message-content">
-											There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.
-                                            </span>
-                                    </div>
-                                </div>
-                                <div class="chat-message left">
-                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                    <div class="message">
-                                        <a class="message-author" href="#"> Alice Jordan </a>
-                                        <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                        <span class="message-content">
-											All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
-                                                It uses a dictionary of over 200 Latin words.
-                                            </span>
-                                    </div>
-                                </div>
-                                <div class="chat-message right">
-                                    <img class="message-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                    <div class="message">
-                                        <a class="message-author" href="#"> Mark Smith </a>
-                                        <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                        <span class="message-content">
-											All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.
-                                                It uses a dictionary of over 200 Latin words.
-                                            </span>
-                                    </div>
-                                </div>
-
+                                @endforeach
                             </div>
-
                         </div>
                         <div class="col-md-3">
                             <div class="chat-users">
-
-
                                 <div class="users-list">
-                                    <div class="chat-user">
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Karl Jordan</a>
+                                    @foreach($users as $user)
+                                        <div class="chat-user">
+                                            <span id="user-{{ 'user-status-' . $user->id }}" class="pull-right label label-primary">{{$user->last_seen ? 'Online' : 'Offline'}}</span>
+                                            <img class="chat-avatar" src="{{$user->avatar}}" alt="">
+                                            <div class="chat-user-name">
+                                                <a wire:click="setRoomByUserId({{ $user->id }})" href="#">{{ $user->name }}</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Monica Smith</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <span class="pull-right label label-primary">Online</span>
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Michael Smith</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <span class="pull-right label label-primary">Online</span>
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Janet Smith</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Alice Smith</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Monica Cale</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Mark Jordan</a>
-                                        </div>
-                                    </div>
-                                    <div class="chat-user">
-                                        <span class="pull-right label label-primary">Online</span>
-                                        <img class="chat-avatar" src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="">
-                                        <div class="chat-user-name">
-                                            <a href="#">Janet Smith</a>
-                                        </div>
+                                    @endforeach
                                     </div>
                                 </div>
                             </div>
